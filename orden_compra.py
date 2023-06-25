@@ -13,3 +13,10 @@ def verificar_credenciales():
         abrir_ventana_principal()
     else:
         messagebox.showerror("Error", "Contraseña/usuario incorrecto")
+        
+def abrir_ventana_principal():
+    ventana_principal = tk.Tk()
+    ventana_principal.title("Sistema de Órdenes de Compras")
+    ventana_principal.configure(bg="DarkOliveGreen")
+
+    ventana_principal.iconbitmap("Orden-de.ico") # Icono        
