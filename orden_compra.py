@@ -101,3 +101,44 @@ def abrir_ventana_principal():
             total += precio
 
             total_label.config(text=f"Total: ${total:.2f}")
+
+    def generar_informe():
+        # Conexión a la base de datos
+        conexion = sqlite3.connect("ordenes_compra.db")
+        cursor = conexion.cursor()
+
+        # Obtener los datos de las órdenes de compra
+        cursor.execute("SELECT * FROM ordenes_compra")
+        ordenes = cursor.fetchall()
+
+        # Crear el documento PDF
+        c = canvas.Canvas("informe_ordenes.pdf")
+
+        # Título del informe
+        c.setFont("Helvetica-Bold", 16)
+        c.drawString(50, 750, "Informe de Órdenes de Compra")
+        c.setFont("Helvetica", 12)
+
+        # Contenido del informe
+        y = 700  # Posición vertical inicial
+
+        # Crear una lista para almacenar los datos de las órdenes
+        datos_orden = []
+
+        for orden in ordenes:
+            producto = orden[1]
+            cantidad = orden[2]
+            precio = orden[3]
+
+            # Agregar los datos de la orden a la lista
+            datos_orden.append(f"{producto} ({cantidad}) - ${precio:.2f}")
+
+        # Imprimir los datos de las órdenes en el informe
+        for dato in datos_orden:
+            c.drawString(50, y, dato)
+            y -= 20
+
+        # Guardar y cerrar el documento PDF
+        c.save()
+
+        messagebox.showinfo("Informe generado", "Se ha generado el informe de órdenes de compra.")
