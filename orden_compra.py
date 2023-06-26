@@ -54,3 +54,27 @@ def abrir_ventana_principal():
             precio_entry.delete(0, tk.END)
         else:
             messagebox.showwarning("Advertencia", "Por favor completa todos los campos.")
+
+    def eliminar_orden():
+        # Obtener el índice de la orden seleccionada en la lista
+        seleccion = lista_orden.curselection()
+
+        # Verificar si se seleccionó una orden
+        if seleccion:
+            # Obtener la orden seleccionada
+            orden_seleccionada = lista_orden.get(seleccion)
+
+            # Obtener el producto de la orden seleccionada
+            producto = orden_seleccionada.split(' (')[0]
+
+            # Eliminar la orden de la base de datos
+            cursor.execute("DELETE FROM ordenes_compra WHERE producto=?", (producto,))
+            conexion.commit()
+
+            # Eliminar la orden de la lista visual
+            lista_orden.delete(seleccion)
+
+            # Actualizar el total
+            calcular_total()
+        else:
+            messagebox.showwarning("Error", "No se ha seleccionado ninguna orden.")
