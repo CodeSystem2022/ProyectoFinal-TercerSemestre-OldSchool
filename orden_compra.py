@@ -78,3 +78,26 @@ def abrir_ventana_principal():
             calcular_total()
         else:
             messagebox.showwarning("Error", "No se ha seleccionado ninguna orden.")
+
+        def actualizar_lista():
+            cursor.execute("SELECT * FROM ordenes_compra")
+            ordenes = cursor.fetchall()
+
+            lista_orden.delete(0, tk.END)
+
+            for orden in ordenes:
+                producto = orden[1]
+                cantidad = orden[2]
+                precio = orden[3]
+                lista_orden.insert(tk.END, f"{producto} ({cantidad}) - ${precio:.2f}")
+
+        def calcular_total():
+            total = 0
+
+            for i in range(lista_orden.size()):
+                orden = lista_orden.get(i)
+                precio_inicio = orden.rfind("$") + 1
+                precio = float(orden[precio_inicio:])
+                total += precio
+
+            total_label.config(text=f"Total: ${total:.2f}")
