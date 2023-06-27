@@ -142,3 +142,53 @@ def abrir_ventana_principal():
         c.save()
 
         messagebox.showinfo("Informe generado", "Se ha generado el informe de órdenes de compra.")
+ # Interfaz de usuario
+    titulo_label = tk.Label(ventana_principal, text="Sistema de Órdenes de Compras", font=("Helvetica", 18), bg="DarkOliveGreen", fg="white")
+    titulo_label.pack(pady=10)
+
+    # Marco para ingresar los datos de la orden
+    marco_orden = tk.LabelFrame(ventana_principal, text="Nueva Orden de Compra", bg="DarkOliveGreen", fg="white", padx=20, pady=20)
+    marco_orden.pack(padx=10, pady=10)
+
+    # Campos de entrada de datos
+    producto_label = tk.Label(marco_orden, text="Producto:", bg="DarkOliveGreen", fg="white")
+    producto_label.grid(row=0, column=0)
+    producto_entry = tk.Entry(marco_orden)
+    producto_entry.grid(row=0, column=1)
+
+    cantidad_label = tk.Label(marco_orden, text="Cantidad:", bg="DarkOliveGreen", fg="white")
+    cantidad_label.grid(row=1, column=0)
+    cantidad_entry = tk.Entry(marco_orden)
+    cantidad_entry.grid(row=1, column=1)
+
+    precio_label = tk.Label(marco_orden, text="Precio:", bg="DarkOliveGreen", fg="white")
+    precio_label.grid(row=2, column=0)
+    precio_entry = tk.Entry(marco_orden)
+    precio_entry.grid(row=2, column=1)
+
+    agregar_button = tk.Button(marco_orden, text="Agregar Orden", command=agregar_orden)
+    agregar_button.grid(row=3, columnspan=2, pady=10)
+
+    # Marco para mostrar la lista de órdenes
+    marco_lista = tk.LabelFrame(ventana_principal, text="Lista de Órdenes de Compra", bg="DarkOliveGreen", fg="white", padx=20, pady=20)
+    marco_lista.pack(padx=10, pady=10)
+
+    lista_orden = tk.Listbox(marco_lista, width=50)
+    lista_orden.pack()
+
+    eliminar_button = tk.Button(marco_lista, text="Eliminar Orden", command=eliminar_orden)
+    eliminar_button.pack(pady=10)
+
+    # Etiqueta para mostrar el total
+    total_label = tk.Label(ventana_principal, text="Total: $0.00", font=("Helvetica", 14), bg="DarkOliveGreen", fg="white")
+    total_label.pack(pady=10)
+
+    # Botón para generar el informe
+    informe_button = tk.Button(ventana_principal, text="Generar Informe", command=generar_informe)
+    informe_button.pack(pady=10)
+
+    # Cargar las órdenes existentes al iniciar la aplicación
+    actualizar_lista()
+    calcular_total()
+
+    ventana_principal.mainloop()
