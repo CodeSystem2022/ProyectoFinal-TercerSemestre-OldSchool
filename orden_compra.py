@@ -13,28 +13,25 @@ def verificar_credenciales():
         abrir_ventana_principal()
     else:
         messagebox.showerror("Error", "Contraseña/usuario incorrecto")
-<<<<<<< HEAD
 
-=======
         
->>>>>>> 55ec2cf27f06e1ace63d31ced4b4aea5437deda2
+
 def abrir_ventana_principal():
     ventana_principal = tk.Tk()
     ventana_principal.title("Sistema de Órdenes de Compras")
     ventana_principal.configure(bg="DarkOliveGreen")
 
-<<<<<<< HEAD
     ventana_principal.iconbitmap("Orden-de.ico") # Icono
 
-=======
+
     ventana_principal.iconbitmap("Orden-de.ico")# Icono
->>>>>>> 55ec2cf27f06e1ace63d31ced4b4aea5437deda2
+
 
     conexion = sqlite3.connect("ordenes_compra.db")
     cursor = conexion.cursor()
 
     cursor.execute("""
-<<<<<<< HEAD
+
         CREATE TABLE IF NOT EXISTS ordenes_compra (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             producto TEXT,
@@ -42,7 +39,7 @@ def abrir_ventana_principal():
             precio REAL
         )
     """)
-=======
+
             CREATE TABLE IF NOT EXISTS ordenes_compra (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 producto TEXT,
@@ -50,8 +47,6 @@ def abrir_ventana_principal():
                 precio REAL
             )
         """)
->>>>>>> 55ec2cf27f06e1ace63d31ced4b4aea5437deda2
-    conexion.commit()
 
     def agregar_orden():
         producto = producto_entry.get()
@@ -74,10 +69,7 @@ def abrir_ventana_principal():
         else:
             messagebox.showwarning("Advertencia", "Por favor completa todos los campos.")
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 55ec2cf27f06e1ace63d31ced4b4aea5437deda2
     def eliminar_orden():
         # Obtener el índice de la orden seleccionada en la lista
         seleccion = lista_orden.curselection()
@@ -102,10 +94,7 @@ def abrir_ventana_principal():
         else:
             messagebox.showwarning("Error", "No se ha seleccionado ninguna orden.")
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 55ec2cf27f06e1ace63d31ced4b4aea5437deda2
     def actualizar_lista():
         cursor.execute("SELECT * FROM ordenes_compra")
         ordenes = cursor.fetchall()
@@ -127,12 +116,11 @@ def abrir_ventana_principal():
             precio = float(orden[precio_inicio:])
             total += precio
 
-<<<<<<< HEAD
+
         total_label.config(text=f"Total: ${total:.2f}")
 
-=======
             total_label.config(text=f"Total: ${total:.2f}")
->>>>>>> 55ec2cf27f06e1ace63d31ced4b4aea5437deda2
+
 
     def generar_informe():
         # Conexión a la base de datos
@@ -174,13 +162,13 @@ def abrir_ventana_principal():
         c.save()
 
         messagebox.showinfo("Informe generado", "Se ha generado el informe de órdenes de compra.")
-<<<<<<< HEAD
+
 
 
     # Interfaz de usuario
-=======
+
  # Interfaz de usuario
->>>>>>> 55ec2cf27f06e1ace63d31ced4b4aea5437deda2
+
     titulo_label = tk.Label(ventana_principal, text="Sistema de Órdenes de Compras", font=("Helvetica", 18), bg="DarkOliveGreen", fg="white")
     titulo_label.pack(pady=10)
 
@@ -229,7 +217,6 @@ def abrir_ventana_principal():
     actualizar_lista()
     calcular_total()
 
-<<<<<<< HEAD
     ventana_principal.mainloop()
 
 
@@ -264,6 +251,4 @@ login_button.pack(pady=10)
 
 ventana_login.mainloop()
 
-=======
-    ventana_principal.mainloop()
->>>>>>> 55ec2cf27f06e1ace63d31ced4b4aea5437deda2
+
