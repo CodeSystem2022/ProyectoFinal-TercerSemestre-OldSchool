@@ -40,13 +40,7 @@ def abrir_ventana_principal():
         )
     """)
 
-            CREATE TABLE IF NOT EXISTS ordenes_compra (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                producto TEXT,
-                cantidad INTEGER,
-                precio REAL
-            )
-        """)
+
 
     def agregar_orden():
         producto = producto_entry.get()
@@ -119,7 +113,7 @@ def abrir_ventana_principal():
 
         total_label.config(text=f"Total: ${total:.2f}")
 
-            total_label.config(text=f"Total: ${total:.2f}")
+           
 
 
     def generar_informe():
